@@ -1,0 +1,4 @@
+[0m[[0mdebug[0m] [0mCopy resource mappings: [0m
+[0m[[0mdebug[0m] [0m	(C:\Users\dell\IdeaProjects\my-twitter-api\src\test\resources\log4j.properties,C:\Users\dell\IdeaProjects\my-twitter-api\target\scala-2.12\test-classes\log4j.properties)[0m
+[0m[[0mdebug[0m] [0m	(C:\Users\dell\IdeaProjects\my-twitter-api\src\test\resources\unauthorizedCredentials.conf,C:\Users\dell\IdeaProjects\my-twitter-api\target\scala-2.12\test-classes\unauthorizedCredentials.conf)[0m
+[0m[[0mdebug[0m] [0m	(C:\Users\dell\IdeaProjects\my-twitter-api\src\test\resources\wrongCredentials.conf,C:\Users\dell\IdeaProjects\my-twitter-api\target\scala-2.12\test-classes\wrongCredentials.conf)[0m

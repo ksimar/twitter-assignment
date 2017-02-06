@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<coverage 
+line-rate="0.94" lines-valid="16" lines-covered="15" branches-valid="1" branches-covered="1" branch-rate="1.00" complexity="0" version="1.0" timestamp="1486366979432">
+    <sources>
+        <source>--source</source>
+        <source>C:/Users/dell/IdeaProjects/my-twitter-api/src/main/scala-2.12</source>
+        <source>C:/Users/dell/IdeaProjects/my-twitter-api/src/main/scala</source>
+        <source>C:/Users/dell/IdeaProjects/my-twitter-api/src/main/java</source>
+    </sources>
+    <packages>
+        <package name="edu.knoldus.twitterApi" line-rate="0.94" branch-rate="1.00" complexity="0">
+            <classes>
+                <class 
+                name="edu.knoldus.twitterApi.ConnectionToTwitter" filename="edu/knoldus/twitterApi/ConnectionToTwitter.scala" line-rate="0.94" branch-rate="1.00" complexity="0">
+                    <methods>
+                        <method 
+                        name="edu.knoldus.twitterApi/ConnectionToTwitter/makeConnection" signature="()V" line-rate="0.94" branch-rate="1.00" complexity="0">
+                            <lines>
+                                <line number="26" hits="1" branch="false"/>
+                                <line number="33" hits="1" branch="false"/>
+                                <line number="15" hits="1" branch="false"/>
+                                <line number="18" hits="1" branch="false"/>
+                                <line number="38" hits="1" branch="false"/>
+                                <line number="17" hits="1" branch="false"/>
+                                <line number="35" hits="1" branch="false"/>
+                                <line number="40" hits="0" branch="false"/>
+                                <line number="21" hits="1" branch="false"/>
+                                <line number="15" hits="1" branch="false"/>
+                                <line number="14" hits="1" branch="false"/>
+                                <line number="28" hits="1" branch="false"/>
+                                <line number="34" hits="1" branch="false"/>
+                                <line number="16" hits="1" branch="false"/>
+                                <line number="19" hits="1" branch="false"/>
+                                <line number="39" hits="1" branch="false"/>
+                            </lines>
+</method>
+                    </methods>
+                    <lines>
+                        <line number="26" hits="1" branch="false"/>
+                        <line number="33" hits="1" branch="false"/>
+                        <line number="15" hits="1" branch="false"/>
+                        <line number="18" hits="1" branch="false"/>
+                        <line number="38" hits="1" branch="false"/>
+                        <line number="17" hits="1" branch="false"/>
+                        <line number="35" hits="1" branch="false"/>
+                        <line number="40" hits="0" branch="false"/>
+                        <line number="21" hits="1" branch="false"/>
+                        <line number="15" hits="1" branch="false"/>
+                        <line number="14" hits="1" branch="false"/>
+                        <line number="28" hits="1" branch="false"/>
+                        <line number="34" hits="1" branch="false"/>
+                        <line number="16" hits="1" branch="false"/>
+                        <line number="19" hits="1" branch="false"/>
+                        <line number="39" hits="1" branch="false"/>
+                    </lines>
+</class>
+            </classes>
+        </package>
+    </packages>
+</coverage>

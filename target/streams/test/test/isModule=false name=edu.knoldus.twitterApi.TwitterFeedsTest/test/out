@@ -1,0 +1,40 @@
+[0m[[0minfo[0m] [0m[32mTwitterFeedsTest:[0m[0m
+[0m[[0minfo[0m] [0m[31m- Output should have received all tweets *** FAILED ***[0m[0m
+[0m[[0minfo[0m] [0m[31m  twitter4j.TwitterException: Remote host closed connection during handshake[0m[0m
+[0m[[0minfo[0m] [0m[31m  at twitter4j.HttpClientImpl.handleRequest(HttpClientImpl.java:179)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at twitter4j.HttpClientBase.request(HttpClientBase.java:57)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at twitter4j.HttpClientBase.get(HttpClientBase.java:75)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at twitter4j.TwitterImpl.get(TwitterImpl.java:1786)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at twitter4j.TwitterImpl.search(TwitterImpl.java:268)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at edu.knoldus.twitterApi.TwitterFeeds.$anonfun$getTweets$1(TwitterFeeds.scala:27)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at scala.concurrent.Future$.$anonfun$apply$1(Future.scala:653)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at scala.util.Success.$anonfun$map$1(Try.scala:251)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at scala.util.Success.map(Try.scala:209)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at scala.concurrent.Future.$anonfun$map$1(Future.scala:287)[0m[0m
+[0m[[0minfo[0m] [0m[31m  ...[0m[0m
+[0m[[0minfo[0m] [0m[31m  Cause: javax.net.ssl.SSLHandshakeException: Remote host closed connection during handshake[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.security.ssl.SSLSocketImpl.readRecord(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.security.ssl.SSLSocketImpl.performInitialHandshake(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.net.www.protocol.https.HttpsClient.afterConnect(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.net.www.protocol.http.HttpURLConnection.access$200(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.net.www.protocol.http.HttpURLConnection$9.run(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.net.www.protocol.http.HttpURLConnection$9.run(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  ...[0m[0m
+[0m[[0minfo[0m] [0m[31m  Cause: java.io.EOFException: SSL peer shut down incorrectly[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.security.ssl.InputRecord.read(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.security.ssl.SSLSocketImpl.readRecord(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.security.ssl.SSLSocketImpl.performInitialHandshake(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.security.ssl.SSLSocketImpl.startHandshake(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.net.www.protocol.https.HttpsClient.afterConnect(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.net.www.protocol.http.HttpURLConnection.access$200(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  at sun.net.www.protocol.http.HttpURLConnection$9.run(Unknown Source)[0m[0m
+[0m[[0minfo[0m] [0m[31m  ...[0m[0m
+[0m[[0minfo[0m] [0m[32m- Output should contain actual no. of tweets[0m[0m
+[0m[[0minfo[0m] [0m[32m- Avarage Likes and Retweets should be greater than zero[0m[0m

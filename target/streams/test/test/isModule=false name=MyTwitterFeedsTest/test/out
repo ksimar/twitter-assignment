@@ -1,0 +1,6 @@
+[0m[[0minfo[0m] [0m[32mMyTwitterFeedsTest:[0m[0m
+[0m[[0minfo[0m] [0m[32m- Output should have received all tweets[0m[0m
+[0m[[0minfo[0m] [0m[32m- Output should contain actual no. of tweets[0m[0m
+[0m[[0minfo[0m] [0m[31m- Exception should be caught *** FAILED ***[0m[0m
+[0m[[0minfo[0m] [0m[31m  Expected exception com.typesafe.config.ConfigException to be thrown, but twitter4j.TwitterException was thrown (MyTwitterFeedsTest.scala:33)[0m[0m
+[0m[[0minfo[0m] [0m[32m- TwitterException should be caught[0m[0m

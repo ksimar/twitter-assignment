@@ -1,0 +1,1096 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          edu\knoldus\twitterApi\MyTwitterFeeds.scala.html
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/css/theme.default.min.css" type="text/css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/js/jquery.tablesorter.min.js"></script><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css"/><script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {$(".tablesorter").tablesorter();});
+      </script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier;'>1 <span style=''>package edu.knoldus.twitterApi
+</span>2 <span style=''>
+</span>3 <span style=''>import com.typesafe.config.ConfigFactory
+</span>4 <span style=''>import org.apache.log4j.Logger
+</span>5 <span style=''>import twitter4j._
+</span>6 <span style=''>import twitter4j.conf.ConfigurationBuilder
+</span>7 <span style=''>import scala.collection.JavaConverters._
+</span>8 <span style=''>import scala.concurrent.ExecutionContext.Implicits.global
+</span>9 <span style=''>import scala.concurrent.Future
+</span>10 <span style=''>
+</span>11 <span style=''>class MyTwitterFeeds {
+</span>12 <span style=''>
+</span>13 <span style=''>  val log = </span><span style='background: #AEF1AE'>Logger.getLogger(this.getClass)</span><span style=''>
+</span>14 <span style=''>  val conf = </span><span style='background: #AEF1AE'>ConfigFactory.load(&quot;credentials.conf&quot;)</span><span style=''>
+</span>15 <span style=''>
+</span>16 <span style=''>  /**
+</span>17 <span style=''>    *
+</span>18 <span style=''>    * @param hashTag
+</span>19 <span style=''>    * @return
+</span>20 <span style=''>    */</span><span style='background: #AEF1AE'>
+</span>21 <span style=''></span><span style='background: #AEF1AE'>  def getTweets(hashTag: HashTag): Future[List[Status]] = Future {
+</span>22 <span style=''></span><span style='background: #AEF1AE'>    val consumerKey = conf.getString(&quot;consumerKey&quot;)
+</span>23 <span style=''></span><span style='background: #AEF1AE'>    val consumerSecretKey = conf.getString(&quot;consumerSecretKey&quot;)
+</span>24 <span style=''></span><span style='background: #AEF1AE'>    val accessToken = conf.getString(&quot;accessToken&quot;)
+</span>25 <span style=''></span><span style='background: #AEF1AE'>    val accessTokenSecret = conf.getString(&quot;accessTokenSecret&quot;)
+</span>26 <span style=''></span><span style='background: #AEF1AE'>
+</span>27 <span style=''></span><span style='background: #AEF1AE'>    val configurationBuilder = new ConfigurationBuilder()
+</span>28 <span style=''></span><span style='background: #AEF1AE'>    configurationBuilder.setDebugEnabled(false)
+</span>29 <span style=''></span><span style='background: #AEF1AE'>      .setOAuthConsumerKey(consumerKey)
+</span>30 <span style=''></span><span style='background: #AEF1AE'>      .setOAuthConsumerSecret(consumerSecretKey)
+</span>31 <span style=''></span><span style='background: #AEF1AE'>      .setOAuthAccessToken(accessToken)
+</span>32 <span style=''></span><span style='background: #AEF1AE'>      .setOAuthAccessTokenSecret(accessTokenSecret)
+</span>33 <span style=''></span><span style='background: #AEF1AE'>
+</span>34 <span style=''></span><span style='background: #AEF1AE'>    val twitter: Twitter = new TwitterFactory(configurationBuilder.build()).getInstance()
+</span>35 <span style=''></span><span style='background: #AEF1AE'>    val count = 100
+</span>36 <span style=''></span><span style='background: #AEF1AE'>
+</span>37 <span style=''></span><span style='background: #AEF1AE'>    log.info(&quot;creating query...&quot;)
+</span>38 <span style=''></span><span style='background: #AEF1AE'>    val query = new Query(hashTag.toString)
+</span>39 <span style=''></span><span style='background: #AEF1AE'>    query.setSince(&quot;2016-11-24&quot;)
+</span>40 <span style=''></span><span style='background: #AEF1AE'>    query.setCount(count)
+</span>41 <span style=''></span><span style='background: #AEF1AE'>
+</span>42 <span style=''></span><span style='background: #AEF1AE'>    log.info(&quot;Searching...&quot;)
+</span>43 <span style=''></span><span style='background: #AEF1AE'>    val list = twitte</span><span style=''>r.search(query)
+</span>44 <span style=''>    val tweets = list.getTweets.asScala.toList
+</span>45 <span style=''>    tweets
+</span>46 <span style=''>
+</span>47 <span style=''>  }
+</span>48 <span style=''>
+</span>49 <span style=''>  /**
+</span>50 <span style=''>    *
+</span>51 <span style=''>    * @param </span><span style='background: #F0ADAD'>futureListOfStatus
+</span>52 <span style=''></span><span style='background: #F0ADAD'>    * @return
+</span>53 <span style=''></span><span style='background: #F0ADAD'>    */
+</span>54 <span style=''></span><span style='background: #F0ADAD'>
+</span>55 <span style=''></span><span style='background: #F0ADAD'>  def getTweets(futureListOfStatus: Future[List[Status]]): Future[List[MyTweets]] = {
+</span>56 <span style=''></span><span style='background: #F0ADAD'>
+</span>57 <span style=''></span><span style='background: #F0ADAD'>    val allTwee</span><span style=''>ts = futureListOfStatus map { listOfstatus =&gt;
+</span>58 <span style=''>      listOfstatus map { status =&gt;
+</span>59 <span style=''>        MyTweets(status.getText, status.getUser.getScreenName)
+</span>60 <span style=''>      }
+</span>61 <span style=''>    }
+</span>62 <span style=''>   </span><span style='background: #AEF1AE'> allTweets
+</span>63 <span style=''></span><span style='background: #AEF1AE'>
+</span>64 <span style=''></span><span style='background: #AEF1AE'>  }
+</span>65 <span style=''></span><span style='background: #AEF1AE'>
+</span>66 <span style=''></span><span style='background: #AEF1AE'>  /</span><span style=''>**
+</span>67 <span style=''>    *
+</span>68 <span style=''>    * @param futureTweets
+</span>69 <span style=''>    * @return
+</span>70 <span style=''>    */
+</span>71 <span style=''>  def countNoOfTweets(futureTweets: Future[List[MyTweets]]): Future[Int] = {
+</span>72 <span style=''>    futureTweets.map(_.size)
+</span>73 <span style=''>  }
+</span>74 <span style=''>
+</span>75 <span style=''>  /**
+</span>76 <span style=''>    * It should return average but somehow i couldn't do that
+</span>77 <span style=''>    * So I am returning only Sum
+</span>78 <span style=''>    *
+</span>79 <span style=''>   </span><span style='background: #F0ADAD'> * @param futureTweets
+</span>80 <span style=''></span><span style='background: #F0ADAD'>    * @return
+</span>81 <span style=''></span><span style='background: #F0ADAD'>    */
+</span>82 <span style=''></span><span style='background: #F0ADAD'>  def averageLikesAndRet</span><span style=''>weets(futureTweets: Future[List[S</span><span style='background: #F0ADAD'>tatus]]): List[Future[Int]] = </span><span style=''>{
+</span>83 <span style=''>    val futureReTweetsCount = </span><span style='background: #F0ADAD'>futureTweets map{tweets =&gt; twee</span><span style=''>ts map{status =&gt; status.getRetweetCount}}
+</span>84 <span style=''>    val futureSumOfRetweets = futureReTweetsCount map(_.sum)
+</span>85 <span style=''>    val f</span><span style='background: #F0ADAD'>utureSizeOfReTweets = futureReTweetsCount map(_.size)
+</span>86 <span style=''></span><span style='background: #F0ADAD'>   // val sum1 = f</span><span style=''>utureSumOfRetweets map(sum =&gt;</span><span style='background: #F0ADAD'> sum / futureSizeOfReTweets</span><span style=''>.map(_) </span><span style='background: #F0ADAD'>)
+</span>87 <span style=''></span><span style='background: #F0ADAD'>    val futureLikesCount = futureTweets </span><span style=''>map(tweets =&gt; tweets map{status =&gt; status.getFavoriteCount})
+</span>88 <span style=''>    val futureSumOfLikes = futureLikesCount map(_.sum)
+</span>89 <span style=''>
+</span>90 <span style=''>    List(futureSumOfRetweets, futureSumOfLikes)
+</span>91 <span style=''>
+</span>92 <span style=''>  }
+</span>93 <span style=''>
+</span>94 <span style=''>}
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          13
+        </td>
+        <td>
+          5
+        </td>
+        <td>
+          345
+          -
+          376
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          org.apache.log4j.Logger.getLogger
+        </td>
+        <td style="background: #AEF1AE">
+          org.apache.log4j.Logger.getLogger(this.getClass())
+        </td>
+      </tr><tr>
+        <td>
+          13
+        </td>
+        <td>
+          4
+        </td>
+        <td>
+          362
+          -
+          375
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Object.getClass
+        </td>
+        <td style="background: #AEF1AE">
+          this.getClass()
+        </td>
+      </tr><tr>
+        <td>
+          14
+        </td>
+        <td>
+          6
+        </td>
+        <td>
+          391
+          -
+          429
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          com.typesafe.config.ConfigFactory.load
+        </td>
+        <td style="background: #AEF1AE">
+          com.typesafe.config.ConfigFactory.load(&quot;credentials.conf&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          16
+        </td>
+        <td>
+          23
+        </td>
+        <td>
+          491
+          -
+          1401
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.concurrent.Future.apply
+        </td>
+        <td style="background: #AEF1AE">
+          scala.concurrent.Future.apply[List[twitter4j.Status]]({
+  val consumerKey: String = MyTwitterFeeds.this.conf.getString(&quot;consumerKey&quot;);
+  val consumerSecretKey: String = MyTwitterFeeds.this.conf.getString(&quot;consumerSecretKey&quot;);
+  val accessToken: String = MyTwitterFeeds.this.conf.getString(&quot;accessToken&quot;);
+  val accessTokenSecret: String = MyTwitterFeeds.this.conf.getString(&quot;accessTokenSecret&quot;);
+  val configurationBuilder: twitter4j.conf.ConfigurationBuilder = new twitter4j.conf.ConfigurationBuilder();
+  configurationBuilder.setDebugEnabled(false).setOAuthConsumerKey(consumerKey).setOAuthConsumerSecret(consumerSecretKey).setOAuthAccessToken(accessToken).setOAuthAccessTokenSecret(accessTokenSecret);
+  val twitter: twitter4j.Twitter = new twitter4j.TwitterFactory(configurationBuilder.build()).getInstance();
+  MyTwitterFeeds.this.log.info(&quot;creating query...&quot;);
+  val query: twitter4j.Query = new twitter4j.Query(hashTag.toString());
+  query.setSince(&quot;2016-11-24&quot;);
+  query.setCount(100);
+  MyTwitterFeeds.this.log.info(&quot;Searching...&quot;);
+  val list: twitter4j.QueryResult = twitter.search(query);
+  val tweets: List[twitter4j.Status] = scala.collection.JavaConverters.asScalaBufferConverter[twitter4j.Status](list.getTweets()).asScala.toList;
+  tweets
+})(scala.concurrent.ExecutionContext.Implicits.global)
+        </td>
+      </tr><tr>
+        <td>
+          17
+        </td>
+        <td>
+          7
+        </td>
+        <td>
+          523
+          -
+          552
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          com.typesafe.config.Config.getString
+        </td>
+        <td style="background: #AEF1AE">
+          MyTwitterFeeds.this.conf.getString(&quot;consumerKey&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          8
+        </td>
+        <td>
+          582
+          -
+          617
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          com.typesafe.config.Config.getString
+        </td>
+        <td style="background: #AEF1AE">
+          MyTwitterFeeds.this.conf.getString(&quot;consumerSecretKey&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          9
+        </td>
+        <td>
+          641
+          -
+          670
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          com.typesafe.config.Config.getString
+        </td>
+        <td style="background: #AEF1AE">
+          MyTwitterFeeds.this.conf.getString(&quot;accessToken&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          20
+        </td>
+        <td>
+          10
+        </td>
+        <td>
+          700
+          -
+          735
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          com.typesafe.config.Config.getString
+        </td>
+        <td style="background: #AEF1AE">
+          MyTwitterFeeds.this.conf.getString(&quot;accessTokenSecret&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          11
+        </td>
+        <td>
+          770
+          -
+          796
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          twitter4j.conf.ConfigurationBuilder.&lt;init&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          new twitter4j.conf.ConfigurationBuilder()
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          12
+        </td>
+        <td>
+          802
+          -
+          1030
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          twitter4j.conf.ConfigurationBuilder.setOAuthAccessTokenSecret
+        </td>
+        <td style="background: #AEF1AE">
+          configurationBuilder.setDebugEnabled(false).setOAuthConsumerKey(consumerKey).setOAuthConsumerSecret(consumerSecretKey).setOAuthAccessToken(accessToken).setOAuthAccessTokenSecret(accessTokenSecret)
+        </td>
+      </tr><tr>
+        <td>
+          29
+        </td>
+        <td>
+          13
+        </td>
+        <td>
+          1061
+          -
+          1123
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          twitter4j.TwitterFactory.getInstance
+        </td>
+        <td style="background: #AEF1AE">
+          new twitter4j.TwitterFactory(configurationBuilder.build()).getInstance()
+        </td>
+      </tr><tr>
+        <td>
+          31
+        </td>
+        <td>
+          14
+        </td>
+        <td>
+          1131
+          -
+          1160
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          org.apache.log4j.Category.info
+        </td>
+        <td style="background: #AEF1AE">
+          MyTwitterFeeds.this.log.info(&quot;creating query...&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          16
+        </td>
+        <td>
+          1178
+          -
+          1205
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          twitter4j.Query.&lt;init&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          new twitter4j.Query(hashTag.toString())
+        </td>
+      </tr><tr>
+        <td>
+          32
+        </td>
+        <td>
+          15
+        </td>
+        <td>
+          1188
+          -
+          1204
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          edu.knoldus.twitterApi.HashTag.toString
+        </td>
+        <td style="background: #AEF1AE">
+          hashTag.toString()
+        </td>
+      </tr><tr>
+        <td>
+          33
+        </td>
+        <td>
+          17
+        </td>
+        <td>
+          1211
+          -
+          1239
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          twitter4j.Query.setSince
+        </td>
+        <td style="background: #AEF1AE">
+          query.setSince(&quot;2016-11-24&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          18
+        </td>
+        <td>
+          1245
+          -
+          1264
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          twitter4j.Query.setCount
+        </td>
+        <td style="background: #AEF1AE">
+          query.setCount(100)
+        </td>
+      </tr><tr>
+        <td>
+          36
+        </td>
+        <td>
+          19
+        </td>
+        <td>
+          1272
+          -
+          1296
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          org.apache.log4j.Category.info
+        </td>
+        <td style="background: #AEF1AE">
+          MyTwitterFeeds.this.log.info(&quot;Searching...&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          37
+        </td>
+        <td>
+          20
+        </td>
+        <td>
+          1313
+          -
+          1334
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          twitter4j.api.SearchResource.search
+        </td>
+        <td style="background: #AEF1AE">
+          twitter.search(query)
+        </td>
+      </tr><tr>
+        <td>
+          38
+        </td>
+        <td>
+          22
+        </td>
+        <td>
+          1353
+          -
+          1382
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.collection.TraversableOnce.toList
+        </td>
+        <td style="background: #AEF1AE">
+          scala.collection.JavaConverters.asScalaBufferConverter[twitter4j.Status](list.getTweets()).asScala.toList
+        </td>
+      </tr><tr>
+        <td>
+          38
+        </td>
+        <td>
+          21
+        </td>
+        <td>
+          1353
+          -
+          1367
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          twitter4j.QueryResult.getTweets
+        </td>
+        <td style="background: #AEF1AE">
+          list.getTweets()
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          29
+        </td>
+        <td>
+          1514
+          -
+          1663
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.concurrent.Future.map
+        </td>
+        <td style="background: #F0ADAD">
+          futureListOfStatus.map[List[edu.knoldus.twitterApi.MyTweets]](((listOfstatus: List[twitter4j.Status]) =&gt; listOfstatus.map[edu.knoldus.twitterApi.MyTweets, List[edu.knoldus.twitterApi.MyTweets]](((status: twitter4j.Status) =&gt; MyTweets.apply(status.getText(), status.getUser().getScreenName())))(immutable.this.List.canBuildFrom[edu.knoldus.twitterApi.MyTweets])))(scala.concurrent.ExecutionContext.Implicits.global)
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          28
+        </td>
+        <td>
+          1562
+          -
+          1654
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.collection.immutable.List.map
+        </td>
+        <td style="background: #F0ADAD">
+          listOfstatus.map[edu.knoldus.twitterApi.MyTweets, List[edu.knoldus.twitterApi.MyTweets]](((status: twitter4j.Status) =&gt; MyTweets.apply(status.getText(), status.getUser().getScreenName())))(immutable.this.List.canBuildFrom[edu.knoldus.twitterApi.MyTweets])
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          27
+        </td>
+        <td>
+          1575
+          -
+          1575
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.collection.immutable.List.canBuildFrom
+        </td>
+        <td style="background: #F0ADAD">
+          immutable.this.List.canBuildFrom[edu.knoldus.twitterApi.MyTweets]
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          26
+        </td>
+        <td>
+          1600
+          -
+          1654
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          edu.knoldus.twitterApi.MyTweets.apply
+        </td>
+        <td style="background: #F0ADAD">
+          MyTweets.apply(status.getText(), status.getUser().getScreenName())
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          25
+        </td>
+        <td>
+          1625
+          -
+          1653
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          twitter4j.User.getScreenName
+        </td>
+        <td style="background: #F0ADAD">
+          status.getUser().getScreenName()
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          24
+        </td>
+        <td>
+          1609
+          -
+          1623
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          twitter4j.Status.getText
+        </td>
+        <td style="background: #F0ADAD">
+          status.getText()
+        </td>
+      </tr><tr>
+        <td>
+          60
+        </td>
+        <td>
+          31
+        </td>
+        <td>
+          1829
+          -
+          1853
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.concurrent.Future.map
+        </td>
+        <td style="background: #AEF1AE">
+          futureTweets.map[Int](((x$1: List[edu.knoldus.twitterApi.MyTweets]) =&gt; x$1.size))(scala.concurrent.ExecutionContext.Implicits.global)
+        </td>
+      </tr><tr>
+        <td>
+          60
+        </td>
+        <td>
+          30
+        </td>
+        <td>
+          1846
+          -
+          1852
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.collection.SeqLike.size
+        </td>
+        <td style="background: #AEF1AE">
+          x$1.size
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          32
+        </td>
+        <td>
+          2191
+          -
+          2213
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          twitter4j.Status.getRetweetCount
+        </td>
+        <td style="background: #F0ADAD">
+          status.getRetweetCount()
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          35
+        </td>
+        <td>
+          2143
+          -
+          2214
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.concurrent.Future.map
+        </td>
+        <td style="background: #F0ADAD">
+          futureTweets.map[List[Int]](((tweets: List[twitter4j.Status]) =&gt; tweets.map[Int, List[Int]](((status: twitter4j.Status) =&gt; status.getRetweetCount()))(immutable.this.List.canBuildFrom[Int])))(scala.concurrent.ExecutionContext.Implicits.global)
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          34
+        </td>
+        <td>
+          2170
+          -
+          2213
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.collection.immutable.List.map
+        </td>
+        <td style="background: #F0ADAD">
+          tweets.map[Int, List[Int]](((status: twitter4j.Status) =&gt; status.getRetweetCount()))(immutable.this.List.canBuildFrom[Int])
+        </td>
+      </tr><tr>
+        <td>
+          71
+        </td>
+        <td>
+          33
+        </td>
+        <td>
+          2177
+          -
+          2177
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.collection.immutable.List.canBuildFrom
+        </td>
+        <td style="background: #F0ADAD">
+          immutable.this.List.canBuildFrom[Int]
+        </td>
+      </tr><tr>
+        <td>
+          72
+        </td>
+        <td>
+          38
+        </td>
+        <td>
+          2247
+          -
+          2277
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.concurrent.Future.map
+        </td>
+        <td style="background: #F0ADAD">
+          futureReTweetsCount.map[Int](((x$2: List[Int]) =&gt; x$2.sum[Int](math.this.Numeric.IntIsIntegral)))(scala.concurrent.ExecutionContext.Implicits.global)
+        </td>
+      </tr><tr>
+        <td>
+          72
+        </td>
+        <td>
+          37
+        </td>
+        <td>
+          2271
+          -
+          2276
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.collection.TraversableOnce.sum
+        </td>
+        <td style="background: #F0ADAD">
+          x$2.sum[Int](math.this.Numeric.IntIsIntegral)
+        </td>
+      </tr><tr>
+        <td>
+          72
+        </td>
+        <td>
+          36
+        </td>
+        <td>
+          2273
+          -
+          2273
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.math.Numeric.IntIsIntegral
+        </td>
+        <td style="background: #F0ADAD">
+          math.this.Numeric.IntIsIntegral
+        </td>
+      </tr><tr>
+        <td>
+          73
+        </td>
+        <td>
+          40
+        </td>
+        <td>
+          2310
+          -
+          2341
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.concurrent.Future.map
+        </td>
+        <td style="background: #F0ADAD">
+          futureReTweetsCount.map[Int](((x$3: List[Int]) =&gt; x$3.size))(scala.concurrent.ExecutionContext.Implicits.global)
+        </td>
+      </tr><tr>
+        <td>
+          73
+        </td>
+        <td>
+          39
+        </td>
+        <td>
+          2334
+          -
+          2340
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.collection.SeqLike.size
+        </td>
+        <td style="background: #F0ADAD">
+          x$3.size
+        </td>
+      </tr><tr>
+        <td>
+          75
+        </td>
+        <td>
+          41
+        </td>
+        <td>
+          2503
+          -
+          2526
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          twitter4j.Status.getFavoriteCount
+        </td>
+        <td style="background: #F0ADAD">
+          status.getFavoriteCount()
+        </td>
+      </tr><tr>
+        <td>
+          75
+        </td>
+        <td>
+          44
+        </td>
+        <td>
+          2455
+          -
+          2528
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.concurrent.Future.map
+        </td>
+        <td style="background: #F0ADAD">
+          futureTweets.map[List[Int]](((tweets: List[twitter4j.Status]) =&gt; tweets.map[Int, List[Int]](((status: twitter4j.Status) =&gt; status.getFavoriteCount()))(immutable.this.List.canBuildFrom[Int])))(scala.concurrent.ExecutionContext.Implicits.global)
+        </td>
+      </tr><tr>
+        <td>
+          75
+        </td>
+        <td>
+          43
+        </td>
+        <td>
+          2482
+          -
+          2526
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.collection.immutable.List.map
+        </td>
+        <td style="background: #F0ADAD">
+          tweets.map[Int, List[Int]](((status: twitter4j.Status) =&gt; status.getFavoriteCount()))(immutable.this.List.canBuildFrom[Int])
+        </td>
+      </tr><tr>
+        <td>
+          75
+        </td>
+        <td>
+          42
+        </td>
+        <td>
+          2489
+          -
+          2489
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.collection.immutable.List.canBuildFrom
+        </td>
+        <td style="background: #F0ADAD">
+          immutable.this.List.canBuildFrom[Int]
+        </td>
+      </tr><tr>
+        <td>
+          76
+        </td>
+        <td>
+          47
+        </td>
+        <td>
+          2557
+          -
+          2584
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.concurrent.Future.map
+        </td>
+        <td style="background: #F0ADAD">
+          futureLikesCount.map[Int](((x$4: List[Int]) =&gt; x$4.sum[Int](math.this.Numeric.IntIsIntegral)))(scala.concurrent.ExecutionContext.Implicits.global)
+        </td>
+      </tr><tr>
+        <td>
+          76
+        </td>
+        <td>
+          46
+        </td>
+        <td>
+          2578
+          -
+          2583
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.collection.TraversableOnce.sum
+        </td>
+        <td style="background: #F0ADAD">
+          x$4.sum[Int](math.this.Numeric.IntIsIntegral)
+        </td>
+      </tr><tr>
+        <td>
+          76
+        </td>
+        <td>
+          45
+        </td>
+        <td>
+          2580
+          -
+          2580
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          scala.math.Numeric.IntIsIntegral
+        </td>
+        <td style="background: #F0ADAD">
+          math.this.Numeric.IntIsIntegral
+        </td>
+      </tr><tr>
+        <td>
+          78
+        </td>
+        <td>
+          48
+        </td>
+        <td>
+          2592
+          -
+          2635
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.immutable.List.apply
+        </td>
+        <td style="background: #F0ADAD">
+          scala.collection.immutable.List.apply[scala.concurrent.Future[Int]](futureSumOfRetweets, futureSumOfLikes)
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>

@@ -1,0 +1,67 @@
+<scoverage 
+statement-count="16" statements-invoked="15" statement-rate="93.75" branch-rate="100.00" version="1.0" timestamp="1486366979447">
+    <packages>
+        <package name="edu.knoldus.twitterApi" statement-count="16" statements-invoked="15" statement-rate="93.75">
+            <classes>
+                <class 
+                name="edu.knoldus.twitterApi.ConnectionToTwitter" filename="edu\knoldus\twitterApi\ConnectionToTwitter.scala" statement-count="16" statements-invoked="15" statement-rate="93.75" branch-rate="100.00">
+                    <methods>
+                        <method 
+                        name="edu.knoldus.twitterApi/ConnectionToTwitter/makeConnection" statement-count="16" statements-invoked="15" statement-rate="93.75" branch-rate="100.00">
+                            <statements>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="783" end="1019" line="26" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="1202" end="1229" line="33" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="433" end="468" line="15" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="616" end="645" line="18" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="1339" end="1367" line="38" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="555" end="590" line="17" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="1266" end="1281" line="35" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="1404" end="1413" line="40" branch="false" invocation-count="0" ignored="false">
+</statement>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="749" end="775" line="21" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="452" end="467" line="15" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="422" end="1129" line="14" branch="true" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="1052" end="1114" line="28" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="1239" end="1256" line="34" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="494" end="523" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="677" end="712" line="19" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="edu.knoldus.twitterApi" class="ConnectionToTwitter" class-type="Class" full-class-name="edu.knoldus.twitterApi.ConnectionToTwitter" source="C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala" method="makeConnection" start="1377" end="1394" line="39" branch="false" invocation-count="1" ignored="false">
+</statement>
+                            </statements>
+</method>
+                    </methods>
+</class>
+            </classes>
+        </package>
+    </packages>
+</scoverage>

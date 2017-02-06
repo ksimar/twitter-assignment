@@ -1,0 +1,22 @@
+[0m[[0minfo[0m] [0mscalastyle using config C:\Users\dell\IdeaProjects\my-twitter-api\scalastyle-config.xml[0m
+[0m[[0mdebug[0m] [0mStarting scalastyle[0m
+[0m[[0mdebug[0m] [0mstart file C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala[0m
+[0m[[33mwarn[0m] [0mC:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala:33:21: Magic Number[0m
+[0m[[33mwarn[0m] [0mC:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala:38:21: Magic Number[0m
+[0m[[33mwarn[0m] [0mC:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala:32:8: Regular expression matched 'println'[0m
+[0m[[33mwarn[0m] [0mC:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala:37:8: Regular expression matched 'println'[0m
+[0m[[0mdebug[0m] [0mend file C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\ConnectionToTwitter.scala[0m
+[0m[[0mdebug[0m] [0mstart file C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\HashTag.scala[0m
+[0m[[0mdebug[0m] [0mend file C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\HashTag.scala[0m
+[0m[[0mdebug[0m] [0mstart file C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\MyTweets.scala[0m
+[0m[[0mdebug[0m] [0mend file C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\MyTweets.scala[0m
+[0m[[0mdebug[0m] [0mstart file C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\MyTwitterFeeds.scala[0m
+[0m[[0mdebug[0m] [0mend file C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\MyTwitterFeeds.scala[0m
+[0m[[0mdebug[0m] [0mstart file C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\TwitterFeeds.scala[0m
+[0m[[0mdebug[0m] [0mend file C:\Users\dell\IdeaProjects\my-twitter-api\src\main\scala\edu\knoldus\twitterApi\TwitterFeeds.scala[0m
+[0m[[0minfo[0m] [0mProcessed 5 file(s)[0m
+[0m[[0minfo[0m] [0mFound 0 errors[0m
+[0m[[0minfo[0m] [0mFound 4 warnings[0m
+[0m[[0minfo[0m] [0mFound 0 infos[0m
+[0m[[0minfo[0m] [0mFinished in 0 ms[0m
+[0m[[32msuccess[0m] [0mcreated output: C:\Users\dell\IdeaProjects\my-twitter-api\target[0m

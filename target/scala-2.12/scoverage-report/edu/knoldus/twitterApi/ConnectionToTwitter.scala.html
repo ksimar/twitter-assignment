@@ -1,0 +1,430 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          edu\knoldus\twitterApi\ConnectionToTwitter.scala.html
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/css/theme.default.min.css" type="text/css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/js/jquery.tablesorter.min.js"></script><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css"/><script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {$(".tablesorter").tablesorter();});
+      </script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier;'>1 <span style=''>package edu.knoldus.twitterApi
+</span>2 <span style=''>
+</span>3 <span style=''>import com.typesafe.config.{ConfigException, ConfigFactory}
+</span>4 <span style=''>import twitter4j.{Twitter, TwitterException, TwitterFactory}
+</span>5 <span style=''>import twitter4j.conf.ConfigurationBuilder
+</span>6 <span style=''>
+</span>7 <span style=''>
+</span>8 <span style=''>class ConnectionToTwitter(val credentialsFile: String) {
+</span>9 <span style=''>
+</span>10 <span style=''>  @throws(classOf[TwitterException])
+</span>11 <span style=''>  @throws(classOf[ConfigException])
+</span>12 <span style=''>  def makeConnection(): Twitter = {
+</span>13 <span style=''>    try {
+</span>14 <span style=''>      val conf = ConfigFactory.loa</span><span style='background: #AEF1AE'>d(credentialsFile)
+</span>15 <span style=''></span><span style='background: #AEF1AE'>      val consumerKey = conf.getString(&quot;consumerKey&quot;)
+</span>16 <span style=''></span><span style='background: #AEF1AE'>      val consumerSecretKey = conf.getString(&quot;consumerSecretKey&quot;)
+</span>17 <span style=''></span><span style='background: #AEF1AE'>      val accessToken = conf.getString(&quot;accessToken&quot;)
+</span>18 <span style=''></span><span style='background: #AEF1AE'>      val accessTokenSecret = conf.getString(&quot;accessTokenSecret&quot;)
+</span>19 <span style=''></span><span style='background: #AEF1AE'>
+</span>20 <span style=''></span><span style='background: #AEF1AE'>      val configurationBuilder = new ConfigurationBuilder()
+</span>21 <span style=''></span><span style='background: #AEF1AE'>      configurationBuilder.setDebugEnabled(false)
+</span>22 <span style=''></span><span style='background: #AEF1AE'>        .setOAuthConsumerKey(consumerKey)
+</span>23 <span style=''></span><span style='background: #AEF1AE'>        .setOAuthConsumerSecret(consumerSecretKey)
+</span>24 <span style=''></span><span style='background: #AEF1AE'>        .setOAuthAccessToken(accessToken)
+</span>25 <span style=''></span><span style='background: #AEF1AE'>        .setOAuthAccessTokenSecret(accessTokenSecret)
+</span>26 <span style=''></span><span style='background: #AEF1AE'>
+</span>27 <span style=''></span><span style='background: #AEF1AE'>      val twitter: Twitter = new TwitterFactory(configurationBuilder.build()).getInstance()
+</span>28 <span style=''></span><span style='background: #AEF1AE'>      twitter
+</span>29 <span style=''></span><span style='background: #AEF1AE'>    }
+</span>30 <span style=''></span><span style='background: #AEF1AE'>    catch{
+</span>31 <span style=''></span><span style='background: #AEF1AE'>      c</span><span style=''>ase exception: ConfigException =&gt; {
+</span>32 <span style=''>        println(&quot;CONFIG EXCEPTION&quot;)</span><span style='background: #AEF1AE'>
+</span>33 <span style=''></span><span style='background: #AEF1AE'>        Thread.sleep(100)</span><span style=''>
+</span>34 <span style=''>        t</span><span style='background: #AEF1AE'>hrow exception
+</span>35 <span style=''></span><span style='background: #AEF1AE'> </span><span style=''>     }
+</span>36 <span style=''>  </span><span style='background: #AEF1AE'>    case exc: T</span><span style=''>witterException =&gt; {
+</span>37 <span style=''>        println(&quot;TWITTER EXCEPTION&quot;)</span><span style='background: #AEF1AE'>
+</span>38 <span style=''></span><span style='background: #AEF1AE'>        Thread.sleep(100)</span><span style=''>
+</span>39 <span style=''>        t</span><span style='background: #AEF1AE'>hrow exc
+</span>40 <span style=''></span><span style='background: #AEF1AE'>      }</span><span style=''>
+</span>41 <span style=''>    }
+</span>42 <span style=''> </span><span style='background: #F0ADAD'> }
+</span>43 <span style=''></span><span style='background: #F0ADAD'>}
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          14
+        </td>
+        <td>
+          10
+        </td>
+        <td>
+          422
+          -
+          1129
+        </td>
+        <td>
+          Block
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          {
+  val conf: com.typesafe.config.Config = com.typesafe.config.ConfigFactory.load(ConnectionToTwitter.this.credentialsFile);
+  val consumerKey: String = conf.getString(&quot;consumerKey&quot;);
+  val consumerSecretKey: String = conf.getString(&quot;consumerSecretKey&quot;);
+  val accessToken: String = conf.getString(&quot;accessToken&quot;);
+  val accessTokenSecret: String = conf.getString(&quot;accessTokenSecret&quot;);
+  val configurationBuilder: twitter4j.conf.ConfigurationBuilder = new twitter4j.conf.ConfigurationBuilder();
+  configurationBuilder.setDebugEnabled(false).setOAuthConsumerKey(consumerKey).setOAuthConsumerSecret(consumerSecretKey).setOAuthAccessToken(accessToken).setOAuthAccessTokenSecret(accessTokenSecret);
+  val twitter: twitter4j.Twitter = new twitter4j.TwitterFactory(configurationBuilder.build()).getInstance();
+  twitter
+}
+        </td>
+      </tr><tr>
+        <td>
+          15
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+          433
+          -
+          468
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          com.typesafe.config.ConfigFactory.load
+        </td>
+        <td style="background: #AEF1AE">
+          com.typesafe.config.ConfigFactory.load(ConnectionToTwitter.this.credentialsFile)
+        </td>
+      </tr><tr>
+        <td>
+          15
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          452
+          -
+          467
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          edu.knoldus.twitterApi.ConnectionToTwitter.credentialsFile
+        </td>
+        <td style="background: #AEF1AE">
+          ConnectionToTwitter.this.credentialsFile
+        </td>
+      </tr><tr>
+        <td>
+          16
+        </td>
+        <td>
+          3
+        </td>
+        <td>
+          494
+          -
+          523
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          com.typesafe.config.Config.getString
+        </td>
+        <td style="background: #AEF1AE">
+          conf.getString(&quot;consumerKey&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          17
+        </td>
+        <td>
+          4
+        </td>
+        <td>
+          555
+          -
+          590
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          com.typesafe.config.Config.getString
+        </td>
+        <td style="background: #AEF1AE">
+          conf.getString(&quot;consumerSecretKey&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          5
+        </td>
+        <td>
+          616
+          -
+          645
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          com.typesafe.config.Config.getString
+        </td>
+        <td style="background: #AEF1AE">
+          conf.getString(&quot;accessToken&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          6
+        </td>
+        <td>
+          677
+          -
+          712
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          com.typesafe.config.Config.getString
+        </td>
+        <td style="background: #AEF1AE">
+          conf.getString(&quot;accessTokenSecret&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          21
+        </td>
+        <td>
+          7
+        </td>
+        <td>
+          749
+          -
+          775
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          twitter4j.conf.ConfigurationBuilder.&lt;init&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          new twitter4j.conf.ConfigurationBuilder()
+        </td>
+      </tr><tr>
+        <td>
+          26
+        </td>
+        <td>
+          8
+        </td>
+        <td>
+          783
+          -
+          1019
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          twitter4j.conf.ConfigurationBuilder.setOAuthAccessTokenSecret
+        </td>
+        <td style="background: #AEF1AE">
+          configurationBuilder.setDebugEnabled(false).setOAuthConsumerKey(consumerKey).setOAuthConsumerSecret(consumerSecretKey).setOAuthAccessToken(accessToken).setOAuthAccessTokenSecret(accessTokenSecret)
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          9
+        </td>
+        <td>
+          1052
+          -
+          1114
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          twitter4j.TwitterFactory.getInstance
+        </td>
+        <td style="background: #AEF1AE">
+          new twitter4j.TwitterFactory(configurationBuilder.build()).getInstance()
+        </td>
+      </tr><tr>
+        <td>
+          33
+        </td>
+        <td>
+          11
+        </td>
+        <td>
+          1202
+          -
+          1229
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.println
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.println(&quot;CONFIG EXCEPTION&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          12
+        </td>
+        <td>
+          1239
+          -
+          1256
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Thread.sleep
+        </td>
+        <td style="background: #AEF1AE">
+          java.lang.Thread.sleep(100L)
+        </td>
+      </tr><tr>
+        <td>
+          35
+        </td>
+        <td>
+          13
+        </td>
+        <td>
+          1266
+          -
+          1281
+        </td>
+        <td>
+          Throw
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #AEF1AE">
+          throw exception
+        </td>
+      </tr><tr>
+        <td>
+          38
+        </td>
+        <td>
+          14
+        </td>
+        <td>
+          1339
+          -
+          1367
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.println
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.println(&quot;TWITTER EXCEPTION&quot;)
+        </td>
+      </tr><tr>
+        <td>
+          39
+        </td>
+        <td>
+          15
+        </td>
+        <td>
+          1377
+          -
+          1394
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.Thread.sleep
+        </td>
+        <td style="background: #AEF1AE">
+          java.lang.Thread.sleep(100L)
+        </td>
+      </tr><tr>
+        <td>
+          40
+        </td>
+        <td>
+          16
+        </td>
+        <td>
+          1404
+          -
+          1413
+        </td>
+        <td>
+          Throw
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td style="background: #F0ADAD">
+          throw exc
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>
